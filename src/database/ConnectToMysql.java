@@ -4,39 +4,62 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 public class ConnectToMysql {
     //libreria de mysql
-    public String driver = "com.mysql.sdbc.Driver";
-
+    private String driver;
     //nombre de la base de datos
-    public String dataBase = "carreras";
-
+    private String dataBase;
     //host
-    public String hostName = "localhost";
-
+    private String hostName;
     //puerto
-    public String port = "3306";
-
+    private String port;
     //Ruta de nuestra base de datos (desactivamos el uso de SSL con "?useSSL=false")
-    public String url = "jdbc:mysql://" + hostName + ":" + port + "/" + dataBase + "?useSSL=false";
-
+    private String url;
     //nombre de usuario
-    public String name = "root";
-
+    private String user;
     //clave de usuario
-    public String passwd = "";
+    private String passwd;
+
+    Connection connection = null;
+
+    public ConnectToMysql(){
+        driver = "" ;
+        dataBase = "carreras";
+        hostName  = "localhost";
+        port = "3306";
+        url = "jdbc:mysql://" + hostName + ":" + port + "/" + dataBase + "?useSSL=false";
+        user  = "root";
+        passwd  = "admin";
+    }
+
+    public ConnectToMysql(String dataBase, String hostName, String port, String user, String passwd) {
+        this.dataBase = dataBase;
+        this.hostName = hostName;
+        this.port = port;
+        this.user = user;
+        this.passwd = passwd;
+        url = "jdbc:mysql://" + hostName + "/" + port + "/" + dataBase + "?useSSL=false";
+    }
 
     public Connection conectarMysql(){
-        Connection connection = null;
-
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            System.out.println("No encuentra la clase");
         }
         try {
-            connection = DriverManager.getConnection(url, name, passwd);
+            //generamos la coneion
+            connection = DriverManager.getConnection(url, user, passwd);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("No es pot conectar");
+        }
+        return connection;
+    }
+    public void desconectarMySQL(){
+        try {
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return connection;
     }
 }
