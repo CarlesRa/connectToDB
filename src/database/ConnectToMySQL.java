@@ -61,9 +61,9 @@ public class ConnectToMySQL {
 
     /**
      *
-     * @param tableName name of the table
+     * @param tableName name of table
      * @param attribute name of attribute
-     * @param attributeValue value of atribute to compare
+     * @param attributeValue value of attribute for compare
      * @throws SQLException
      */
     public void viewRowsByAttribute(String tableName, String attribute, String attributeValue) throws SQLException {
