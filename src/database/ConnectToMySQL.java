@@ -53,7 +53,7 @@ public class ConnectToMySQL {
         myResultset = myStatement.executeQuery("select * from " + tableName);
         while(myResultset.next()) {
             for (int i = 1; i <= myResultset.getMetaData().getColumnCount(); i++) {
-                System.out.print(myResultset.getMetaData().getColumnName(i) + " " + myResultset.getString(i) + "\t");
+                System.out.print(myResultset.getMetaData().getColumnName(i) + ": " + myResultset.getString(i) + "\t");
             }
             System.out.println();
         }
@@ -70,7 +70,7 @@ public class ConnectToMySQL {
         myResultset = myStatement.executeQuery("select * from " + tableName + " where " + attribute +"="+attributeValue);
         while (myResultset.next()){
             for (int i = 1; i <= myResultset.getMetaData().getColumnCount(); i++) {
-                System.out.print(myResultset.getMetaData().getColumnName(i) + " " + myResultset.getString(i) + "\t");
+                System.out.print(myResultset.getMetaData().getColumnName(i) + ": " + myResultset.getString(i) + "\t");
             }
             System.out.println();
         }
