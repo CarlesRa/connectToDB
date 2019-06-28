@@ -12,14 +12,6 @@ public class ConnectToMySQL {
         myStatement = myConnection.createStatement();
     }
 
-    public Statement getMyStatement() {
-        return myStatement;
-    }
-
-    public ResultSet getMyResultset() {
-        return myResultset;
-    }
-
     public void mostrarCorredoresPorNombre(String nombre) throws SQLException {
         myResultset = myStatement.executeQuery("select * from corredores where nom="+nombre);
         while (myResultset.next()){
