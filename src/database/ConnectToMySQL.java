@@ -20,7 +20,10 @@ public class ConnectToMySQL {
         return myResultset;
     }
 
-    public void mostrarCorredoresPorNombre() {
-
+    public void mostrarCorredoresPorNombre(String nombre) throws SQLException {
+        myResultset = myStatement.executeQuery("select * from corredores where nom="+nombre);
+        while (myResultset.next()){
+            System.out.println(myResultset.getString(1) + " " + myResultset.getString(2));
+        }
     }
 }
