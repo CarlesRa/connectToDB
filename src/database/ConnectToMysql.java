@@ -25,9 +25,9 @@ public class ConnectToMysql {
         dataBase = "carreras";
         hostName  = "localhost";
         port = "3306";
-        url = "jdbc:mysql://" + hostName + ":" + port + "/" + dataBase + "?useSSL=false";
+        url = "jdbc:mysql://" + hostName + ":" + port + "/" + dataBase;
         user  = "root";
-        passwd  = "admin";
+        passwd  = "";
     }
 
     public ConnectToMysql(String dataBase, String hostName, String port, String user, String passwd) {
@@ -36,16 +36,10 @@ public class ConnectToMysql {
         this.port = port;
         this.user = user;
         this.passwd = passwd;
-        url = "jdbc:mysql://" + hostName + "/" + port + "/" + dataBase + "?useSSL=false";
+        url = "jdbc:mysql://" + hostName + "/" + port + "/" + dataBase;
     }
 
     public Connection conectarMysql(){
-        try {
-            Class.forName(driver);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.out.println("No encuentra la clase");
-        }
         try {
             //generamos la coneion
             connection = DriverManager.getConnection(url, user, passwd);

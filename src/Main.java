@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) {
         GestionDB gestionDB = new GestionDB();
         try {
-            System.out.println(gestionDB.getConnection().getSchema());
+            System.out.println(gestionDB.getConnection());
         } catch (SQLException e) {
             e.printStackTrace();
         }
